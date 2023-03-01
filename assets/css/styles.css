@@ -8,7 +8,6 @@ h1, h2 {
   font-size: 50px ;
 }
 
-
 p {
   margin: 20px 0px;
   font-size: 20px;
@@ -31,8 +30,19 @@ button:hover {
   background-color: #516952;
 }
 
-.home {
-  
+body.correct {
+  background-color: green;
+}
+
+body.wrong {
+  background-color: red;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  margin: 20px 0;
 }
 
 .wrapper {

@@ -13,41 +13,51 @@
     <div>Time: <span id="time">0</span></div>
 
     <div class="wrapper">
-      <div id = "start">
+      <div id = "home">
         <H1>Quiz Study Guide</H1>
         <p>
           A study guide to enforce what we learned throughout the bootcamp. Every question incorrect will be 15 seconds time deducted. Try to get the best time. Good luck!
         </p>
-        <button>Start Quiz</button>
-        <Button>View High Score</Button>
+        <button id="start">Start Quiz</button>
+        <button id="view-scores">View High Score</button>
       </div>
 
-<!-- questions goes here -->
-      <div id="questions">
-        <h2></h2>
-        <div></div>
+<!-- quiz goes here -->
+      <div id="question-container" class="hide">
+        <h2 id="question">Question</h2>
+        <div id="answer-buttons" class="button-grid">
+          <button class="btn correct">Answer 1</button>
+          <button class="btn wrong">Answer 2</button>
+          <button class="btn">Answer 3</button>
+          <button class="btn">Answer 4</button>
+        </div>
       </div>
 
-      <div id="score-screen">
+      <div>
+        <button id= "next-btn" class= "hide">Next</button>
+        <button id= "finish-btn" class= "hide">Finish</button>
+      </div>
+
+      <div id="score-input" class="hide">
         <h2>Finished!</h2>
-        <p> Your Score is <span></span></p>
+        <p> Your Score is <span id="score"></span></p>
         <p>Enter your name: <input type="text"></p>
         <button>Submit</button>
       </div>
 
-      <div id="highscore">
+      <div id="highscore" class="hide">
         <h2>Highscores</h2>
-        <ol>
+        <ol id="leaderboard">
 
         </ol>
-        <button>Play Again</button>
+        <button id="play-again">Play Again</button>
         <button>Clear Highscores</button>
       </div>
 
     </div>
 
 
-    <script src="/assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 
 </html>
