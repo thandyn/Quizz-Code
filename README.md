@@ -10,3 +10,5 @@ and to run all the functions I have written out.
 
 ![alt text](./assets/images/ss3.PNG)
 These are the functions I've written. All functions are tied to a button that when clicked on, the functions are running correctly. 
+
+https://thandyn.github.io/Quizz-Code/
