@@ -10,15 +10,15 @@ var questionEl = document.getElementById("question-container");
 var questionAskedEl = document.getElementById("question");
 var answersBtnEl = document.getElementById("answer-buttons");
 var nextBtnel = document.getElementById("next-btn");
-var finishBtnel = document.getElementById("finish-btn");
+var finishBtnEl = document.getElementById("finish-btn");
+var submitBtnEl = document.getElementById("submit");
+var nameEl = document.getElementById("name");
 var time = 100;
 var timer;
 let shuffledQuestions, currentQuestionIndex;
 
 function start() {
-  // hides the start
   homeEl.setAttribute("class", "hide");
-  // shows the question
   currentQuestionIndex = 0;
   questionEl.removeAttribute("class", "hide");
   shuffledQuestions = quiz.sort(() => Math.random() - 0.5);
@@ -64,7 +64,7 @@ function selectAnswer(event) {
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     nextBtnel.classList.remove("hide");
   } else {
-    finishBtnel.classList.remove("hide");
+    finishBtnEl.classList.remove("hide");
   }
 }
 
@@ -99,15 +99,33 @@ function clearStatusClass(element) {
 function countDown() {
   time--;
   timeEl.textContent = time;
+  if (time <= 0) {
+    clearInterval(timer);
+    time = 0;
+  }
+  if (time <= 0) {
+    finish();
+  }
 }
 
 function finish() {
   clearInterval(timer);
   questionEl.setAttribute("class", "hide");
   scoreInputEl.removeAttribute("class", "hide");
-  finishBtnel.setAttribute("class", "hide");
+  finishBtnEl.setAttribute("class", "hide");
   scoreEl = document.getElementById("score");
   scoreEl.textContent = time;
+}
+
+function saveScore() {
+  var name = nameEl.value.trim();
+
+  localStorage.setItem("name", name);
+  localStorage.setItem("score", time);
+
+  localStorage.setItem("score", JSON.stringify(time));
+  scoreInputEl.setAttribute("class", "hide");
+  highscoreEl.removeAttribute("class", "hide");
 }
 
 function viewScores() {
@@ -121,6 +139,7 @@ function playAgain() {
   // hides the high school
   highscoreEl.setAttribute("class", "hide");
   // start function to run the game again
+  time = 100;
   start();
 }
 
@@ -141,12 +160,14 @@ nextBtnel.addEventListener("click", function () {
   setNextQuestion();
 });
 
-finishBtnel.addEventListener("click", function () {
+finishBtnEl.addEventListener("click", function () {
   finish();
 });
 
-startBtn.onclick = start;
-viewScoresBtn.onclick = viewScores;
+submitBtnEl.addEventListener("click", function () {
+  saveScore();
+});
+
 playAgainBtn.onclick = playAgain;
 
 var quiz = [
